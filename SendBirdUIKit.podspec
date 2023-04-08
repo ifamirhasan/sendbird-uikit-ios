@@ -18,4 +18,5 @@ Pod::Spec.new do |s|
 	s.requires_arc = true
 	s.dependency "SendbirdChatSDK", ">= 4.6.0"
 	s.ios.library = "icucore"
+	s.swift_version = "5.0"
 end
