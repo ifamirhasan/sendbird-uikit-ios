@@ -9,21 +9,21 @@
 import UIKit
 import SendbirdChatSDK
 
-class SBUChannelTitleView: UIView {
+open class SBUChannelTitleView: UIView {
     // MARK: - Public
     public var channel: BaseChannel?
     
     @SBUThemeWrapper(theme: SBUTheme.componentTheme)
-    var theme: SBUComponentTheme
+    open var theme: SBUComponentTheme
     
     
     // MARK: - Private
-    lazy var contentView = UIView()
-    lazy var coverImage = SBUCoverImageView()
-    lazy var stackView = UIStackView()
-    lazy var titleLabel = UILabel()
-    lazy var statusField = UITextField()
-    lazy var onlineStateIcon = UIView()
+    open lazy var contentView = UIView()
+    open lazy var coverImage = SBUCoverImageView()
+    open lazy var stackView = UIStackView()
+    open lazy var titleLabel = UILabel()
+    open lazy var statusField = UITextField()
+    open lazy var onlineStateIcon = UIView()
 
     private let kCoverImageSize: CGFloat = 34.0
     
@@ -37,11 +37,11 @@ class SBUChannelTitleView: UIView {
     }
     
     @available(*, unavailable, renamed: "SBUChannelTitleView.init(frame:)")
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 
-    func setupViews() {
+    open func setupViews() {
         self.coverImage.clipsToBounds = true
         self.coverImage.frame = CGRect(x: 0, y: 0, width: kCoverImageSize, height: kCoverImageSize)
         
@@ -65,7 +65,7 @@ class SBUChannelTitleView: UIView {
         self.addSubview(self.contentView)
     }
     
-    func setupLayouts() {
+    open func setupLayouts() {
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
         let contentHeightConstant = self.contentView.heightAnchor.constraint(
             equalToConstant: self.bounds.height
@@ -120,7 +120,7 @@ class SBUChannelTitleView: UIView {
         ])
     }
     
-    func setupStyles() {
+    open func setupStyles() {
         self.onlineStateIcon.backgroundColor = theme.titleOnlineStateColor
         
         self.titleLabel.font = theme.titleFont
@@ -130,7 +130,7 @@ class SBUChannelTitleView: UIView {
         self.statusField.textColor = theme.titleStatusColor
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
 
         self.onlineStateIcon.layer.cornerRadius = self.onlineStateIcon.frame.width/2
@@ -143,7 +143,7 @@ class SBUChannelTitleView: UIView {
     }
 
     // MARK: - Common
-    public func configure(channel: BaseChannel?, title: String?) {
+    open func configure(channel: BaseChannel?, title: String?) {
         self.channel = channel
         self.titleLabel.text = ""
 
@@ -173,7 +173,7 @@ class SBUChannelTitleView: UIView {
         self.updateChannelStatus(channel: channel)
     }
     
-    func loadCoverImage() {
+    open func loadCoverImage() {
         guard let channel = self.channel else {
             self.coverImage.setPlaceholder(type: .iconUser, iconSize: CGSize(width: 40, height: 40))
             return
@@ -204,7 +204,7 @@ class SBUChannelTitleView: UIView {
         }
     }
     
-    public func updateChannelStatus(channel: BaseChannel?) {
+    open func updateChannelStatus(channel: BaseChannel?) {
         self.statusField.leftViewMode = .never
         
         if let channel = channel as? GroupChannel {
@@ -238,13 +238,13 @@ class SBUChannelTitleView: UIView {
     }
     
     // MARK: - Util
-    private func buildTypingIndicatorString(channel: GroupChannel) -> String? {
+    open func buildTypingIndicatorString(channel: GroupChannel) -> String? {
         guard let typingMembers = channel.getTypingUsers(),
             !typingMembers.isEmpty else { return nil }
         return SBUStringSet.Channel_Typing(typingMembers)
     }
     
-    override var intrinsicContentSize: CGSize {
+    open override var intrinsicContentSize: CGSize {
         //NOTE: this is under assumption that this view is used in
         //navigation and / or stack view to shrink but keep max width
         return CGSize(width: 100000, height: self.frame.height)
