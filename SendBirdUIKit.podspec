@@ -15,6 +15,5 @@ Pod::Spec.new do |s|
 	s.source_files = "Sources/**/*.{h,swift}"
 	s.ios.frameworks = ["UIKit", "Foundation", "CoreData", "SendbirdChatSDK"]
 	s.dependency "SendbirdChatSDK", ">= 4.6.0"
-	s.ios.library = "icucore"
 	s.swift_version = "5.0"
 end
