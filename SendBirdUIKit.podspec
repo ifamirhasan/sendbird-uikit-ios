@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = "SendBirdUIKit"
 	s.module_name  = "SendbirdUIKit"
-	s.version      = "3.5.3"
+	s.version      = "1.0.0"
 	s.summary      = "UIKit based on SendbirdChatSDK"
 	s.description  = "Sendbird UIKit is a framework composed of basic UI components based on SendbirdChatSDK."
 	s.homepage     = "https://sendbird.com"
@@ -21,4 +21,5 @@ Pod::Spec.new do |s|
 	s.ios.library = "icucore"
 	s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' } 
  	s.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER': 'com.sendbird.uikit' }
+ 	s.swift_version = "5.0"
 end
