@@ -15,6 +15,8 @@ private let kDefaultOpenChannelName = "Open Channel"
 
 public class SBUUtils {
     
+    public static var isReadReceiptEnabled: (() -> Bool)?
+    
     /// This function gets the message file type of the file message.
     /// - Parameter fileMessage: `FileMessage` object
     /// - Returns: `SBUMessageFileType`
@@ -141,6 +143,9 @@ public class SBUUtils {
     ///
     /// - Since: 2.2.0
     public static func getReceiptState(of message: BaseMessage, in channel: GroupChannel) -> SBUMessageReceiptState {
+        if !(isReadReceiptEnabled?() ?? false) {
+            return .notUsed
+        }
         if channel.isSuper || channel.isBroadcast {
             return .notUsed
         }

@@ -33,6 +33,8 @@ open class SBUUserMessageCell: SBUContentBaseMessageCell, SBUUserMessageTextView
         let webView = SBUMessageWebView()
         return webView
     }()
+    
+    open var selectedTranslationLang: (() -> String?)?
 
     
     // MARK: - View Lifecycle
@@ -126,7 +128,8 @@ open class SBUUserMessageCell: SBUContentBaseMessageCell, SBUUserMessageTextView
             messageTextView.configure(
                 model: SBUUserMessageTextViewModel(
                     message: message,
-                    position: configuration.messagePosition
+                    position: configuration.messagePosition,
+                    selectedTranslationLang: selectedTranslationLang?()
                 )
             )
         }
@@ -196,7 +199,8 @@ open class SBUUserMessageCell: SBUContentBaseMessageCell, SBUUserMessageTextView
             model: SBUUserMessageTextViewModel(
                 message: message,
                 position: position,
-                highlightKeyword: highlightInfo?.keyword
+                highlightKeyword: highlightInfo?.keyword,
+                selectedTranslationLang: selectedTranslationLang?()
             )
         )
     }

@@ -57,9 +57,13 @@ public struct SBUUserMessageTextViewModel {
         textColor: UIColor? = nil,
         isEdited: Bool? = nil,
         isOverlay: Bool = false,
-        highlightKeyword: String? = nil
+        highlightKeyword: String? = nil,
+        selectedTranslationLang: String? = nil
     ) {
-        let text = message?.message ?? text ?? ""
+        var text = message?.message ?? text ?? ""
+        if let selectedTranslationLang, let message = message as? UserMessage, let translatedMsg = message.translations[selectedTranslationLang] {
+            text = translatedMsg
+        }
         
         if let isEdited = isEdited {
             edited = isEdited
