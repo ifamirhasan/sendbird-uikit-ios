@@ -47,7 +47,7 @@ open class SBUGroupChannelCell: SBUBaseChannelCell {
     public let messageSpacer = UIView()
     
     /// A value used in the size of `coverImage`.
-    public let coverImageSize: CGFloat = 56
+    public let coverImageSize: CGFloat = 70
     /// A value used in the height of `unreadCount`.
     public let unreadCountSize: CGFloat = 20
     /// A value used in the size of icon image views.
